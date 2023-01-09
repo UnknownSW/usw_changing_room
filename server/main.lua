@@ -2,8 +2,8 @@ ESX = nil
 
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
-RegisterServerEvent('esx_nsp_changing_room:deleteOutfit')
-AddEventHandler('esx_nsp_changing_room:deleteOutfit', function(label)
+RegisterServerEvent('usw_changing_room:deleteOutfit')
+AddEventHandler('usw_changing_room:deleteOutfit', function(label)
 	local xPlayer = ESX.GetPlayerFromId(source)
 
 	TriggerEvent('esx_datastore:getDataStore', 'property', xPlayer.identifier, function(store)
@@ -21,7 +21,7 @@ AddEventHandler('esx_nsp_changing_room:deleteOutfit', function(label)
 	end)
 end)
 
-ESX.RegisterServerCallback('esx_nsp_changing_room:checkPropertyDataStore', function(source, cb)
+ESX.RegisterServerCallback('usw_changing_room:checkPropertyDataStore', function(source, cb)
 	local xPlayer    = ESX.GetPlayerFromId(source)
 	local foundStore = false
 
@@ -36,7 +36,7 @@ end)
 
 
 
-ESX.RegisterServerCallback('esx_nsp_changing_room:getPlayerDressing', function(source, cb)
+ESX.RegisterServerCallback('usw_changing_room:getPlayerDressing', function(source, cb)
   local xPlayer  = ESX.GetPlayerFromId(source)
 
   TriggerEvent('esx_datastore:getDataStore', 'property', xPlayer.identifier, function(store)
@@ -52,7 +52,7 @@ ESX.RegisterServerCallback('esx_nsp_changing_room:getPlayerDressing', function(s
   end)
 end)
 
-ESX.RegisterServerCallback('esx_nsp_changing_room:getPlayerOutfit', function(source, cb, num)
+ESX.RegisterServerCallback('usw_changing_room:getPlayerOutfit', function(source, cb, num)
   local xPlayer  = ESX.GetPlayerFromId(source)
 
   TriggerEvent('esx_datastore:getDataStore', 'property', xPlayer.identifier, function(store)

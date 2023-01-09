@@ -37,7 +37,7 @@ function OpenDressingMenu()
 
       if data.current.value == 'player_dressing' then
 		
-        ESX.TriggerServerCallback('esx_nsp_changing_room:getPlayerDressing', function(dressing)
+        ESX.TriggerServerCallback('usw_changing_room:getPlayerDressing', function(dressing)
           local elements = {}
 
           for i=1, #dressing, 1 do
@@ -52,7 +52,7 @@ function OpenDressingMenu()
 
               TriggerEvent('skinchanger:getSkin', function(skin)
 
-                ESX.TriggerServerCallback('esx_nsp_changing_room:getPlayerOutfit', function(clothes)
+                ESX.TriggerServerCallback('usw_changing_room:getPlayerOutfit', function(clothes)
 
                   TriggerEvent('skinchanger:loadClothes', skin, clothes)
                   TriggerEvent('esx_skin:setLastSkin', skin)
@@ -77,7 +77,7 @@ function OpenDressingMenu()
         end)
       end
 	  if data.current.value == 'delete_cloth' then
-		ESX.TriggerServerCallback('esx_nsp_changing_room:getPlayerDressing', function(dressing)
+		ESX.TriggerServerCallback('usw_changing_room:getPlayerDressing', function(dressing)
 			local elements = {}
 
 			for i=1, #dressing, 1 do
@@ -90,7 +90,7 @@ function OpenDressingMenu()
               elements = elements,
             }, function(data, menu)
 			menu.close()
-				TriggerServerEvent('esx_nsp_changing_room:deleteOutfit', data.current.value)
+				TriggerServerEvent('usw_changing_room:deleteOutfit', data.current.value)
  ESX.ShowNotification(_L("deleted_cloth")) 
             end, function(data, menu)
               menu.close()
@@ -111,13 +111,13 @@ function OpenDressingMenu()
     end)
 end
 
-AddEventHandler('esx_nsp_changing_room:hasEnteredMarker', function(zone)
+AddEventHandler('usw_changing_room:hasEnteredMarker', function(zone)
 	CurrentAction     = 'clothes_menu'
 	CurrentActionMsg  = _U('press_menu')
 	CurrentActionData = {}
 end)
 
-AddEventHandler('esx_nsp_changing_room:hasExitedMarker', function(zone)
+AddEventHandler('usw_changing_room:hasExitedMarker', function(zone)
 	
 	ESX.UI.Menu.CloseAll()
 	CurrentAction = nil
@@ -160,12 +160,12 @@ Citizen.CreateThread(function()
 		if (isInMarker and not HasAlreadyEnteredMarker) or (isInMarker and LastZone ~= currentZone) then
 			HasAlreadyEnteredMarker = true
 			LastZone                = currentZone
-			TriggerEvent('esx_nsp_changing_room:hasEnteredMarker', currentZone)
+			TriggerEvent('usw_changing_room:hasEnteredMarker', currentZone)
 		end
 
 		if not isInMarker and HasAlreadyEnteredMarker then
 			HasAlreadyEnteredMarker = false
-			TriggerEvent('esx_nsp_changing_room:hasExitedMarker', LastZone)
+			TriggerEvent('usw_changing_room:hasExitedMarker', LastZone)
 		end
 	end
 end
